@@ -13,11 +13,11 @@ router.get("/", (req, res) => {
     .catch(() => res.sendStatus(404));
 });
 
-router.get("/user/:id", (req, res) => {
-  User.findOne({ where: { id: req.params.id } })
-    .then((user) => res.status(200).send(user))
-    .catch(() => res.sendStatus(404));
-});
+// router.get("/user/:id", (req, res) => {
+//   User.findOne({ where: { id: req.params.id } })
+//     .then((user) => res.status(200).send(user))
+//     .catch(() => res.sendStatus(404));
+// });
 
 router.post("/signup", (req, res) => {
   const { username } = req.body;
@@ -54,8 +54,9 @@ router.get("/secret", validateAuth, (req, res) => {
   res.send(validateToken(req.cookies.user));
 });
 
-router.post("/logout", (req, res) => {
-  res.clearCookie("cookie");
+router.get("/logout", (req, res) => {
+  console.log("Hola");
+  res.clearCookie("user");
   res.sendStatus(204);
 });
 

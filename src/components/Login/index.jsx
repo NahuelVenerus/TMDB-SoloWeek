@@ -20,8 +20,7 @@ export default function Login() {
       .then((resp) => {
         user.logUser(resp);
         navigate("/");
-      })
-      .catch((err) => console.log("estoy en el catch de logUser", err));
+      });
   }
 
   return (

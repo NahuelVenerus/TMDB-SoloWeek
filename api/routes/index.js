@@ -1,9 +1,9 @@
 const express = require("express");
 const users = require("./users");
-const movies = require("./movies");
+const favorites = require("./favorites");
 const router = express.Router();
 
 router.use("/users", users);
-router.use("/movies", movies);
+router.use("/favorites", favorites);
 
 module.exports = router;

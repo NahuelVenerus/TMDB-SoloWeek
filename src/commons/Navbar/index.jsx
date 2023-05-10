@@ -1,15 +1,23 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useContext } from "react";
+import axios from "axios";
+import { LOCALHOST } from "../../utils/BASE_API";
 
 const logo = require("../../assets/TMDB Logo.jpg");
 
 export default function Header() {
+  const navigate = useNavigate();
   const user = useContext(AuthContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    user.logOut();
+    axios
+      .get(`${LOCALHOST}/api/users/logout`, { withCredentials: true })
+      .then(() => {
+        user.logOut();
+        navigate("/");
+      });
   };
 
   return (
@@ -35,11 +43,12 @@ export default function Header() {
                 <ul className="navbar-nav ms-auto">
                   {user.isAuthenticated ? (
                     <li className="nav-item">
-                      <Link to="/" style={{ textDecoration: "none" }}>
-                        <h2 style={{ margin: "1%" }} onClick={handleSubmit}>
-                          Logout
-                        </h2>
-                      </Link>
+                      <h2
+                        style={{ margin: "1%", color: "blue" }}
+                        onClick={handleSubmit}
+                      >
+                        Logout
+                      </h2>
                     </li>
                   ) : (
                     <div>

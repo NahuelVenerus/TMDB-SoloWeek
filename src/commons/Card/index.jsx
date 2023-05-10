@@ -6,6 +6,7 @@ export default function Card({ content }) {
   return (
     // <Link to="/details" query={content.id}>
     <div className="col" style={{ backgroundColor: "#373737", height: "800" }}>
+      <button>Agregar a favoritos</button>
       <Link to={`/details/${content.id}`} style={{ textDecoration: "none" }}>
         <h4 style={{ color: "#d3d3d3" }}>
           {content.original_title || content.name}
